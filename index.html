@@ -3,28 +3,27 @@
 	<title>Javascript Demo</title>
 	<style>
 		body {
-			background-color:black;
+			background-color: black;
 			font-family: monospace;
-			color:white;
-			font-size:50px;
+			color: #32cd32;
+			font-size: 50px;
 			text-align: center;
-			margin-top:20%;
+			margin: 5%;
+			padding: 5%;
+			border: 3px solid #333;
 		}
-
 		#magic{
-			color: #777;
-			border-right: 1px solid #777;
+			color: #ccc;
+			border-right: 30px solid #ccc;
 			padding-right: 7px;
-			display: inline;
+			display: inline-block;
 		}
 	</style>
 </head>
 <body>
-
 	Coding is <div id="magic"></div>
 
 	<script>
-
 		var words = ["fun", "exciting", "about not giving up", "being helpful", "being open", "what I learned at CodingDojo!"],
 			el = document.getElementById('magic'),
 			word_counter = 0,
@@ -32,24 +31,27 @@
 
 		function updateText()
 		{
-			el.innerHTML = el.innerHTML+words[word_counter][character_counter++];
+			var charwords = words[word_counter][character_counter++];
 
-			if(character_counter == words[word_counter].length)
+			if (charwords == " ") {
+				charwords = "&nbsp;";
+			}
+
+			el.innerHTML = el.innerHTML + charwords;
+
+			if(character_counter == words[word_counter].length + 1)
 			{
 				word_counter++; 	//choose a different word
 				character_counter = 0;	//start over with the first character of the word
 				el.innerHTML = '';  //set the html to be blank
 
 				//if we're displaying the last word, go back to the first word
-				if(word_counter == words.length)
+				if(word_counter == words.length) {
 					word_counter = 0;
+				}
 			}
 		}
-
-		setInterval(updateText,300);
-
+		setInterval(updateText,500);
 	</script>
-
 </body>
-
 </html>
